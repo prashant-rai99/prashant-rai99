@@ -75,7 +75,7 @@ Cloud-deployed agricultural data system: DynamoDB schemas, role-based access, au
 ### 📈 Metrics
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/prashant-rai99/prashant-rai99/main/github-metrics.svg" width="100%"/>
+<img src="https://raw.githubusercontent.com/prashant-rai99/prashant-rai99/main/github-metrics.svg" width="70%"/>
 </div>
 
 <br/>
