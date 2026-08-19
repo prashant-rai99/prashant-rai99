@@ -1,0 +1,55 @@
+name: Metrics
+on:
+  # Runs once a day at 4 PM UTC — keeps your profile metrics fresh
+  schedule: [{cron: "0 16 * * *"}]
+  # Lets you trigger it manually from the Actions tab whenever you want
+  workflow_dispatch:
+  # Also runs whenever you push to this repo
+  push: {branches: ["main"]}
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: github-metrics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+
+          # ===== Base template =====
+          template: classic
+          base: header, activity, community, repositories, metadata
+
+          # ===== Isometric 3D contribution calendar =====
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+
+          # ===== Languages you actually use =====
+          plugin_languages: yes
+          plugin_languages_sections: most-used
+          plugin_languages_limit: 8
+          plugin_languages_details: percentage
+
+          # ===== Coding habits (per day / per hour) =====
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+
+          # ===== Achievements (progress bars: commits, PRs, stars etc) =====
+          plugin_achievements: yes
+          plugin_achievements_threshold: C
+
+          # ===== Topics/skills you've starred or worked with =====
+          plugin_topics: yes
+          plugin_topics_mode: icons
+          plugin_topics_limit: 12
+
+          # ===== Repos you actively maintain =====
+          plugin_stars: yes
+          plugin_stars_limit: 4
